@@ -25,7 +25,7 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -33,618 +33,617 @@
         "y": 0
       },
       "id": 2065,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 3,
-            "x": 0,
-            "y": 9
-          },
-          "id": 15,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "count(sum by(name) (time() - container_last_seen{name!=\"\"} < 60))",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "Running",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "red",
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "noValue": "0",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  },
-                  {
-                    "color": "red",
-                    "value": 1
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 2,
-            "x": 3,
-            "y": 9
-          },
-          "id": 17,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "count(sum by(name) ((time() - container_last_seen{name!=\"\"}) > 60) )",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "Stopped",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "auto",
-                "cellOptions": {
-                  "type": "color-text"
-                },
-                "inspect": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 5,
-            "y": 9
-          },
-          "id": 2063,
-          "options": {
-            "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "frameIndex": 0,
-            "showHeader": false
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "count(time() - container_last_seen{name!=\"\"} < 60) by (name)",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "Running",
-          "transformations": [
-            {
-              "id": "seriesToRows",
-              "options": {}
-            },
-            {
-              "id": "filterFieldsByName",
-              "options": {
-                "include": {
-                  "names": [
-                    "Metric"
-                  ]
-                }
-              }
-            },
-            {
-              "id": "groupBy",
-              "options": {
-                "fields": {
-                  "Metric": {
-                    "aggregations": [],
-                    "operation": "groupby"
-                  }
-                }
-              }
-            }
-          ],
-          "type": "table"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "red",
-                "mode": "fixed"
-              },
-              "custom": {
-                "align": "auto",
-                "cellOptions": {
-                  "type": "color-text"
-                },
-                "inspect": false
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 9,
-            "y": 9
-          },
-          "id": 2064,
-          "options": {
-            "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "frameIndex": 0,
-            "showHeader": false
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "ALERTS{alertname=\"ContainerStopped\"}",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "Stopped",
-          "transformations": [
-            {
-              "id": "reduce",
-              "options": {
-                "labelsToFields": true,
-                "reducers": [
-                  "lastNotNull"
-                ]
-              }
-            },
-            {
-              "id": "calculateField",
-              "options": {
-                "mode": "reduceRow",
-                "reduce": {
-                  "include": [
-                    "name"
-                  ],
-                  "reducer": "lastNotNull"
-                }
-              }
-            },
-            {
-              "id": "groupBy",
-              "options": {
-                "fields": {
-                  "name": {
-                    "aggregations": [],
-                    "operation": "groupby"
-                  }
-                }
-              }
-            }
-          ],
-          "type": "table"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "displayName": "geomapps-back",
-              "fieldMinMax": false,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  },
-                  {
-                    "color": "orange",
-                    "value": 30
-                  },
-                  {
-                    "color": "red",
-                    "value": 60
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 160
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 2,
-            "w": 3,
-            "x": 13,
-            "y": 9
-          },
-          "id": 2072,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "limit": 25,
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "name",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(time() - container_last_seen{name=\"geomapps-back\"}) and on() ((time() - container_last_seen{name=\"geomapps-back\"}) > 0) or on() vector(180)",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "red",
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "noValue": "0",
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  },
-                  {
-                    "color": "red",
-                    "value": 100
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 2,
-            "x": 22,
-            "y": 9
-          },
-          "id": 2071,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "disableTextWrap": false,
-              "editorMode": "code",
-              "expr": "container_exited_count",
-              "fullMetaSearch": false,
-              "includeNullMetadata": true,
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A",
-              "useBackend": false
-            }
-          ],
-          "title": "Stopped",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "displayName": "postgres",
-              "fieldMinMax": false,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "dark-red",
-                    "value": null
-                  },
-                  {
-                    "color": "green",
-                    "value": 0
-                  },
-                  {
-                    "color": "orange",
-                    "value": 30
-                  },
-                  {
-                    "color": "red",
-                    "value": 60
-                  },
-                  {
-                    "color": "dark-red",
-                    "value": 160
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 2,
-            "w": 3,
-            "x": 13,
-            "y": 11
-          },
-          "id": 2073,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "limit": 25,
-              "values": false
-            },
-            "showPercentChange": false,
-            "text": {
-              "valueSize": 25
-            },
-            "textMode": "name",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.1.4",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "cdveclacqz5dsd"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(time() - container_last_seen{name=\"postgres\"}) and on() ((time() - container_last_seen{name=\"postgres\"}) > 0) or on() vector(180)",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "type": "stat"
-        }
-      ],
+      "panels": [],
       "title": "Contenedores",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 1
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(sum by(name) (time() - container_last_seen{name!=\"\"} < 60))",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Running",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 3,
+        "y": 1
+      },
+      "id": 2063,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": false
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(time() - container_last_seen{name!=\"\"} < 60) by (name)",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Running",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Metric"
+              ]
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 7,
+        "y": 1
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(sum by(name) ((time() - container_last_seen{name!=\"\"}) > 60) )",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 9,
+        "y": 1
+      },
+      "id": 2064,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": false
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "ALERTS{alertname=\"ContainerStopped\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": true,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "name"
+              ],
+              "reducer": "lastNotNull"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "name": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "geomapps-back",
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 60
+              },
+              {
+                "color": "dark-red",
+                "value": 160
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 13,
+        "y": 1
+      },
+      "id": 2072,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 25,
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(time() - container_last_seen{name=\"geomapps-back\"}) and on() ((time() - container_last_seen{name=\"geomapps-back\"}) > 0) or on() vector(180)",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 22,
+        "y": 1
+      },
+      "id": 2071,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "container_exited_count",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "postgres",
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 30
+              },
+              {
+                "color": "red",
+                "value": 60
+              },
+              {
+                "color": "dark-red",
+                "value": 160
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 13,
+        "y": 3
+      },
+      "id": 2073,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 25,
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 25
+        },
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(time() - container_last_seen{name=\"postgres\"}) and on() ((time() - container_last_seen{name=\"postgres\"}) > 0) or on() vector(180)",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "type": "stat"
     },
     {
       "collapsed": true,
@@ -652,7 +651,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 1
+        "y": 6
       },
       "id": 2075,
       "panels": [],
@@ -690,7 +689,7 @@
         "h": 5,
         "w": 3,
         "x": 0,
-        "y": 2
+        "y": 7
       },
       "id": 2076,
       "options": {
@@ -740,85 +739,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "red",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "0",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 2,
-        "x": 3,
-        "y": 2
-      },
-      "id": 2077,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "count(sum by(name) ((time() - container_last_seen{name=~\".*-uat\"}) > 60) )",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Stopped",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cdveclacqz5dsd"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "mode": "thresholds"
           },
           "custom": {
@@ -844,8 +764,8 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 5,
-        "y": 2
+        "x": 3,
+        "y": 7
       },
       "id": 2074,
       "options": {
@@ -919,6 +839,85 @@
         "defaults": {
           "color": {
             "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 7,
+        "y": 7
+      },
+      "id": 2077,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(sum by(name) ((time() - container_last_seen{name!=\"\"}) > 60) )",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
             "mode": "fixed"
           },
           "custom": {
@@ -945,7 +944,7 @@
         "h": 5,
         "w": 4,
         "x": 9,
-        "y": 2
+        "y": 7
       },
       "id": 2078,
       "options": {
@@ -1059,7 +1058,7 @@
         "h": 2,
         "w": 3,
         "x": 13,
-        "y": 2
+        "y": 7
       },
       "id": 2070,
       "options": {
@@ -1161,7 +1160,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 2
+        "y": 7
       },
       "id": 2079,
       "options": {
@@ -1242,7 +1241,7 @@
         "h": 2,
         "w": 3,
         "x": 13,
-        "y": 4
+        "y": 9
       },
       "id": 2069,
       "options": {
@@ -1291,7 +1290,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 12
       },
       "id": 34,
       "panels": [],
@@ -1357,7 +1356,7 @@
         "h": 5,
         "w": 8,
         "x": 0,
-        "y": 8
+        "y": 13
       },
       "id": 6,
       "maxDataPoints": 100,
@@ -1445,7 +1444,7 @@
         "h": 5,
         "w": 8,
         "x": 8,
-        "y": 8
+        "y": 13
       },
       "id": 4,
       "maxDataPoints": 100,
@@ -1532,7 +1531,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 8
+        "y": 13
       },
       "id": 7,
       "maxDataPoints": 100,
@@ -1611,7 +1610,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 13
+        "y": 18
       },
       "id": 11,
       "maxDataPoints": 100,
@@ -1690,7 +1689,7 @@
         "h": 3,
         "w": 4,
         "x": 4,
-        "y": 13
+        "y": 18
       },
       "id": 12,
       "maxDataPoints": 100,
@@ -1768,7 +1767,7 @@
         "h": 3,
         "w": 4,
         "x": 8,
-        "y": 13
+        "y": 18
       },
       "id": 9,
       "maxDataPoints": 100,
@@ -1846,7 +1845,7 @@
         "h": 3,
         "w": 4,
         "x": 12,
-        "y": 13
+        "y": 18
       },
       "id": 10,
       "maxDataPoints": 100,
@@ -1924,7 +1923,7 @@
         "h": 3,
         "w": 4,
         "x": 16,
-        "y": 13
+        "y": 18
       },
       "id": 13,
       "maxDataPoints": 100,
@@ -2002,7 +2001,7 @@
         "h": 3,
         "w": 4,
         "x": 20,
-        "y": 13
+        "y": 18
       },
       "id": 14,
       "maxDataPoints": 100,
@@ -2104,7 +2103,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 16
+        "y": 21
       },
       "id": 2051,
       "options": {
@@ -2213,7 +2212,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 16
+        "y": 21
       },
       "id": 2052,
       "options": {
@@ -2322,7 +2321,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 16
+        "y": 21
       },
       "id": 2053,
       "options": {
@@ -2373,7 +2372,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 27
       },
       "id": 3,
       "panels": [],
@@ -2395,8 +2394,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2411,7 +2409,7 @@
         "h": 9,
         "w": 4,
         "x": 0,
-        "y": 23
+        "y": 28
       },
       "id": 2054,
       "options": {
@@ -2499,8 +2497,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2512,7 +2509,7 @@
         "h": 9,
         "w": 20,
         "x": 4,
-        "y": 23
+        "y": 28
       },
       "id": 1,
       "options": {
@@ -2554,7 +2551,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 37
       },
       "id": 2055,
       "panels": [],
@@ -2608,8 +2605,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2621,7 +2617,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 38
       },
       "id": 2,
       "options": {
@@ -2705,8 +2701,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2718,7 +2713,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 38
       },
       "id": 2056,
       "options": {
@@ -2761,7 +2756,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 42
+        "y": 47
       },
       "id": 2057,
       "panels": [],
@@ -2818,8 +2813,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2831,7 +2825,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 48
       },
       "id": 2058,
       "options": {
@@ -2918,8 +2912,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2931,7 +2924,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 48
       },
       "id": 2059,
       "options": {
@@ -2974,7 +2967,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 52
+        "y": 57
       },
       "id": 2060,
       "panels": [],
@@ -3031,8 +3024,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -3044,7 +3036,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 58
       },
       "id": 5,
       "options": {
@@ -3131,8 +3123,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -3144,7 +3135,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 53
+        "y": 58
       },
       "id": 8,
       "options": {
@@ -3187,7 +3178,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 62
+        "y": 67
       },
       "id": 2061,
       "panels": [],
@@ -3219,7 +3210,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 63
+        "y": 68
       },
       "id": 2062,
       "options": {
@@ -3319,6 +3310,6 @@
   "timezone": "",
   "title": "cAdvisor Docker Insights - RA",
   "uid": "ae3c41d7-cea5-4cca-a918-5708706b4dra",
-  "version": 30,
+  "version": 32,
   "weekStart": ""
 }

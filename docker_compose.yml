@@ -38,8 +38,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /sys:/sys:ro
-      - /cgroup:/cgroup:ro
-    restart: always
+      - /cgroup:/cgroup:ro  
+    restart: always            
 
   node-exporter:
     image: prom/node-exporter
