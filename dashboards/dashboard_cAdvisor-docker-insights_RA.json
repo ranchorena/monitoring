@@ -22,7 +22,7 @@
   "graphTooltip": 0,
   "id": 7,
   "links": [],
-  "liveNow": false,
+  "liveNow": true,
   "panels": [
     {
       "collapsed": false,
@@ -487,85 +487,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "red",
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "noValue": "0",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 100
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 2,
-        "x": 22,
-        "y": 1
-      },
-      "id": 2071,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.1.4",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "cdveclacqz5dsd"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "container_exited_count",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Stopped",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "cdveclacqz5dsd"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "mode": "thresholds"
           },
           "displayName": "postgres",
@@ -646,7 +567,7 @@
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1281,6 +1202,377 @@
       "type": "stat"
     },
     {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 2081,
+      "panels": [],
+      "title": "FiberGIS Producto (qa)",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 0,
+        "y": 13
+      },
+      "id": 2080,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(sum by(name) (time() - container_last_seen{name=~\"^fg.*-qa$\"} < 60))",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Running",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 3,
+        "y": 13
+      },
+      "id": 2082,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": false
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(time() - container_last_seen{name=~\"^fg.*-qa$\"} < 60) by (name)",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Running - FiberGIS qa",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Metric"
+              ]
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Metric": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 2,
+        "x": 7,
+        "y": 13
+      },
+      "id": 2083,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "count(sum by(name) ((time() - container_last_seen{name=~\"^fg.*-qa$\"}) > 60) )",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdveclacqz5dsd"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-text"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 9,
+        "y": 13
+      },
+      "id": 2084,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": false
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdveclacqz5dsd"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "ALERTS{alertname=\"ContainerStopped\", name=~\"^fg.*-qa$\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Stopped - FiberGIS qa",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": true,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "name"
+              ],
+              "reducer": "lastNotNull"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "name": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
       "collapsed": false,
       "datasource": {
         "type": "prometheus",
@@ -1290,7 +1582,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 18
       },
       "id": 34,
       "panels": [],
@@ -1356,7 +1648,7 @@
         "h": 5,
         "w": 8,
         "x": 0,
-        "y": 13
+        "y": 19
       },
       "id": 6,
       "maxDataPoints": 100,
@@ -1444,7 +1736,7 @@
         "h": 5,
         "w": 8,
         "x": 8,
-        "y": 13
+        "y": 19
       },
       "id": 4,
       "maxDataPoints": 100,
@@ -1531,7 +1823,7 @@
         "h": 5,
         "w": 8,
         "x": 16,
-        "y": 13
+        "y": 19
       },
       "id": 7,
       "maxDataPoints": 100,
@@ -1610,7 +1902,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 18
+        "y": 24
       },
       "id": 11,
       "maxDataPoints": 100,
@@ -1689,7 +1981,7 @@
         "h": 3,
         "w": 4,
         "x": 4,
-        "y": 18
+        "y": 24
       },
       "id": 12,
       "maxDataPoints": 100,
@@ -1767,7 +2059,7 @@
         "h": 3,
         "w": 4,
         "x": 8,
-        "y": 18
+        "y": 24
       },
       "id": 9,
       "maxDataPoints": 100,
@@ -1845,7 +2137,7 @@
         "h": 3,
         "w": 4,
         "x": 12,
-        "y": 18
+        "y": 24
       },
       "id": 10,
       "maxDataPoints": 100,
@@ -1923,7 +2215,7 @@
         "h": 3,
         "w": 4,
         "x": 16,
-        "y": 18
+        "y": 24
       },
       "id": 13,
       "maxDataPoints": 100,
@@ -2001,7 +2293,7 @@
         "h": 3,
         "w": 4,
         "x": 20,
-        "y": 18
+        "y": 24
       },
       "id": 14,
       "maxDataPoints": 100,
@@ -2103,7 +2395,7 @@
         "h": 6,
         "w": 8,
         "x": 0,
-        "y": 21
+        "y": 27
       },
       "id": 2051,
       "options": {
@@ -2212,7 +2504,7 @@
         "h": 6,
         "w": 8,
         "x": 8,
-        "y": 21
+        "y": 27
       },
       "id": 2052,
       "options": {
@@ -2321,7 +2613,7 @@
         "h": 6,
         "w": 8,
         "x": 16,
-        "y": 21
+        "y": 27
       },
       "id": 2053,
       "options": {
@@ -2372,7 +2664,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 33
       },
       "id": 3,
       "panels": [],
@@ -2394,7 +2686,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2409,7 +2702,7 @@
         "h": 9,
         "w": 4,
         "x": 0,
-        "y": 28
+        "y": 34
       },
       "id": 2054,
       "options": {
@@ -2497,7 +2790,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2509,7 +2803,7 @@
         "h": 9,
         "w": 20,
         "x": 4,
-        "y": 28
+        "y": 34
       },
       "id": 1,
       "options": {
@@ -2551,7 +2845,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 43
       },
       "id": 2055,
       "panels": [],
@@ -2605,7 +2899,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2617,7 +2912,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 44
       },
       "id": 2,
       "options": {
@@ -2701,7 +2996,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2713,7 +3009,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 44
       },
       "id": 2056,
       "options": {
@@ -2756,7 +3052,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 53
       },
       "id": 2057,
       "panels": [],
@@ -2813,7 +3109,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2825,7 +3122,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 54
       },
       "id": 2058,
       "options": {
@@ -2912,7 +3209,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2924,7 +3222,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 48
+        "y": 54
       },
       "id": 2059,
       "options": {
@@ -2967,7 +3265,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 63
       },
       "id": 2060,
       "panels": [],
@@ -3036,7 +3334,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 58
+        "y": 64
       },
       "id": 5,
       "options": {
@@ -3135,7 +3433,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 58
+        "y": 64
       },
       "id": 8,
       "options": {
@@ -3178,7 +3476,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 67
+        "y": 73
       },
       "id": 2061,
       "panels": [],
@@ -3210,7 +3508,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 68
+        "y": 74
       },
       "id": 2062,
       "options": {
@@ -3303,13 +3601,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "cAdvisor Docker Insights - RA",
   "uid": "ae3c41d7-cea5-4cca-a918-5708706b4dra",
-  "version": 32,
+  "version": 35,
   "weekStart": ""
 }
