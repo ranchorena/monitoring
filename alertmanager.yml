@@ -1,0 +1,27 @@
+global:
+  smtp_smarthost: '192.168.1.74:25'  # Servidor SMTP que se utilizará para enviar correos electrónicos.
+  smtp_from: 'prometheus_alertas@serviciosgeosystems.com'  # Dirección de correo que aparecerá como remitente.
+  #smtp_auth_username: 'postmaster@serviciosgeosystems.com'  # Nombre de usuario para autenticar en el servidor SMTP.
+  #smtp_auth_password: 'contraseña'  # Contraseña para autenticar en el servidor SMTP.
+
+route:
+  receiver: 'correo-alertas'
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  routes:
+    - receiver: 'slack-alertas'  # Ruta adicional para enviar alertas a Slack.
+      matchers:
+        - severity = critical  # Solo las alertas con severidad 'critical' serán enviadas a Slack.
+
+receivers:
+  - name: 'correo-alertas'
+    email_configs:
+      - to: 'raul.anchorena@geosystems.com.ar'  # Dirección de correo electrónico a la que se enviarán las alertas.
+        send_resolved: true
+
+  - name: 'slack-alertas'
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/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'  # Reemplaza con tu URL del webhook de Slack.
+        channel: '#prometheus'  # El canal de Slack al que se enviarán las alertas.
+        send_resolved: true

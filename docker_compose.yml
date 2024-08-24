@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    networks:
+      - monitoring
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./recording_rules.yml:/etc/prometheus/recording_rules.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    networks:
+      - monitoring
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: always
+
+  cadvisor:
+    #image: custom-cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    networks:
+      - monitoring
+    ports:
+      - "7080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /sys:/sys:ro
+      - /cgroup:/cgroup:ro
+    restart: always
+
+  node-exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    networks:
+      - monitoring
+    ports:
+      - "9100:9100"
+    restart: always
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'    
+
+  #docker-exporter:
+  #  image: prom/docker-exporter
+  #  container_name: docker-exporter
+  #  networks:
+  #    - monitoring
+  #  ports:
+  #    - "9323:9323"
+  #  volumes:
+  #    - /var/run/docker.sock:/var/run/docker.sock:ro
+  #  restart: always
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    networks:
+      - monitoring    
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    ports:
+      - "9093:9093"
+
+networks:
+  monitoring:
+    driver: bridge
+    external: true
+
+volumes:
+  grafana-data:

@@ -1,0 +1,12 @@
+groups:
+  - name: container_alerts
+    rules:
+      - alert: ContainerStopped
+        expr: |
+          time() - container_last_seen{name!=""} > 60
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Contenedor {{ $labels.name }} detenido"
+          description: "El contenedor {{ $labels.name }} no ha reportado métricas en los últimos 60 segundos."

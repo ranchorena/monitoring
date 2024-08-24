@@ -1,0 +1,9 @@
+groups:
+  - name: example-rules
+    rules:
+      - record: container_state_running_count
+        expr: count(container_tasks_state{state="running"})
+      - record: container_state_exited_count
+        expr: count(container_tasks_state{state="exited"})
+      - record: container_exited_count
+        expr: count(sum by(name) ((time() - container_last_seen{name!=""}) > 60) )        
