@@ -22,6 +22,6 @@ receivers:
 
   - name: 'slack-alertas'
     slack_configs:
-      - api_url: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'  # Reemplaza con tu URL del webhook de Slack.
+      - api_url: '${SLACK_WEBHOOK_URL}'  # Aquí se usa la variable de entorno - Reemplaza con tu URL del webhook de Slack.
         channel: '#prometheus'  # El canal de Slack al que se enviarán las alertas.
         send_resolved: true
