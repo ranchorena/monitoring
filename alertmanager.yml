@@ -19,9 +19,10 @@ receivers:
     email_configs:
       - to: 'raul.anchorena@geosystems.com.ar'  # Dirección de correo electrónico a la que se enviarán las alertas.
         send_resolved: true
+        require_tls: false
 
   - name: 'slack-alertas'
     slack_configs:
-      - api_url: '${SLACK_WEBHOOK_URL}'  # Aquí se usa la variable de entorno - Reemplaza con tu URL del webhook de Slack.
+      - api_url: ${SLACK_WEBHOOK_URL}  # Placeholder para la variable
         channel: '#prometheus'  # El canal de Slack al que se enviarán las alertas.
         send_resolved: true

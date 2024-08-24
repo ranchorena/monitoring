@@ -76,8 +76,6 @@ services:
       - monitoring    
     volumes:
       - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
-    environment:
-      - SLACK_API_URL=${SLACK_API_URL}      
     ports:
       - "9093:9093"
 
