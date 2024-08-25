@@ -58,6 +58,19 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'    
 
+  custom-exporter:
+    #build: ./custom_exporter
+    image: custom-exporter:latest
+    container_name: custom-exporter
+    networks:
+      - monitoring
+    ports:
+      - "7180:7180"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: always      
+
+
   #docker-exporter:
   #  image: prom/docker-exporter
   #  container_name: docker-exporter
